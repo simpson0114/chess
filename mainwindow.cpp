@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // set our scene to size (750, 480)
+    // set our scene size to fit graphicsView
     this->scene = new QGraphicsScene(0, 0, 750, 480);
     // set graphicsview to show our scene
     ui->graphicsView->setScene(this->scene);
@@ -21,11 +21,15 @@ MainWindow::MainWindow(QWidget *parent) :
     pics.push_back(QPixmap(":/img/src/imageSet/6.png"));
 
     // set default image of our scene
-    this->scene->addPixmap(pics[0]);
+    // addPixmap returns a QGraphicsPixmapItem
+    this->item = this->scene->addPixmap(pics[0]);
 
-    // connect our slots to button's signal
+    // connect button's signal to our slots
     connect(ui->pushButton_next, SIGNAL(clicked()), this, SLOT(nextPic()));
     connect(ui->pushButton_prev, SIGNAL(clicked()), this, SLOT(prevPic()));
+    // connect keyPressedSignal to our slots
+    connect(this, SIGNAL(keyQPressed()), this, SLOT(moveUpPic()));
+    connect(this, SIGNAL(keyZPressed()), this, SLOT(moveDownPic()));
 }
 
 MainWindow::~MainWindow()
@@ -35,10 +39,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key::Key_J){
-        prevPic();
-    }else if(event->key() == Qt::Key::Key_L){
-        nextPic();
+    if(event->key() == Qt::Key::Key_Q){
+        // moveUpPic();
+        emit keyQPressed();
+    }else if(event->key() == Qt::Key::Key_Z){
+        // moveDownPic();
+        emit keyZPressed();
     }
 }
 
@@ -47,13 +53,24 @@ void MainWindow::nextPic(){
     scene->clear();
     // if index is out of range, start from 0
     picIndex = picIndex >= pics.size() - 1 ? 0 : picIndex + 1;
-    scene->addPixmap(pics[picIndex]);
+    item = scene->addPixmap(pics[picIndex]);
 }
 
 void MainWindow::prevPic(){
     // reset scene
     scene->clear();
-    // if index is out of range, start form last
+    // if index is out of range, start form last of pics
     picIndex = picIndex <= 0 ? pics.size() - 1 : picIndex - 1;
-    scene->addPixmap(pics[picIndex]);
+    item = scene->addPixmap(pics[picIndex]);
+}
+
+void MainWindow::moveUpPic(){
+    // you can directly manipulate QGraphicsPixmapItem
+    // in scene, your item will automatically refresh
+    item->setPos(item->x(), item->y() - 1);
+}
+
+void MainWindow::moveDownPic(){
+    // in computer, mostly, positive Y-axis is pointed downward
+    item->setPos(item->x(), item->y() + 1);
 }
