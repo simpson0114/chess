@@ -65,3 +65,7 @@ void Tile::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
 void Tile::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     rect->setBrush(color);
 }
+
+void Tile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    emit clicked();
+}

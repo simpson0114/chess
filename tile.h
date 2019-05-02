@@ -6,6 +6,7 @@
 #include <QGraphicsItemGroup>
 #include <QColor>
 #include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneMouseEvent>
 
 class Tile : public QObject, public QGraphicsItemGroup
 {
@@ -17,6 +18,10 @@ public:
     void setType(QString type);
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
+signals:
+    void clicked();
 
 private:
     QColor color;
