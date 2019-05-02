@@ -1,4 +1,5 @@
 #include "chess.h"
+#include <QDebug>
 
 Chess::Chess() {
     scene = new QGraphicsScene();
@@ -12,6 +13,7 @@ Chess::Chess() {
             int color_code = (i + j) % 2;
             QString type;
             tile[i][j] = new Tile(color_code);
+            tile[i][j]->setLoc(QPoint(i, j));
             tile[i][j]->setPos(20 + 100 * j, 20 + 100 * i);
             if(i == 0 && (j == 0 || j == 7))
                 type = "wr";
@@ -39,6 +41,17 @@ Chess::Chess() {
                 type = "br";
             tile[i][j]->setType(type);
             scene->addItem(tile[i][j]);
+            connect(tile[i][j], SIGNAL(clicked(QPoint)), this, SLOT(mousePress(QPoint)));
+        }
+    }
+}
+
+void Chess::mousePress(QPoint ipt) {
+    QString chess_type;
+    chess_type = tile[ipt.x()][ipt.y()]->getType();
+    if(chess_type[1] == "p") {
+        if(ipt.x() == 1 || ipt.x() == 6) {
+
         }
     }
 }

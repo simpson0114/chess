@@ -9,11 +9,16 @@
 #include <QPen>
 #include <QFont>
 #include <QBrush>
+#include <QObject>
 #include "tile.h"
 
 class Chess: public QGraphicsView {
+    Q_OBJECT
 public:
     Chess();
+
+public slots:
+    void mousePress(QPoint ipt);
 
 private:
 

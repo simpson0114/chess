@@ -15,16 +15,19 @@ class Tile : public QObject, public QGraphicsItemGroup
 public:
 
     Tile(int color_code);
-    void setType(QString type);
+    void setType(QString chess_type);
+    void setLoc(QPoint ipt);
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
+    QString getType();
 signals:
-    void clicked();
+    void clicked(QPoint ipt);
 
 private:
+    QString type;
     QColor color;
+    QPoint pos;
     QGraphicsRectItem *rect;
     QGraphicsPixmapItem *pic;
     static const int width = 100;

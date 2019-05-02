@@ -23,36 +23,37 @@ Tile::Tile(int color_code) {
     addToGroup(pic);
 }
 
-void Tile::setType(QString type) {
+void Tile::setType(QString chess_type) {
+    type = chess_type;
     QString tempt;
     if(type[0] == "w") {
         tempt = ":/pic/white/";
-        if(type[1] == "r")
+        if(chess_type[1] == "r")
             pic->setPixmap(QPixmap(tempt + "rok.png").scaledToHeight(80));
-        else if(type[1] == "n")
+        else if(chess_type[1] == "n")
             pic->setPixmap(QPixmap(tempt + "knight.png").scaledToHeight(80));
-        else if(type[1] == "p")
+        else if(chess_type[1] == "p")
             pic->setPixmap(QPixmap(tempt + "pawn.png").scaledToHeight(80));
-        else if(type[1] == "b")
+        else if(chess_type[1] == "b")
             pic->setPixmap(QPixmap(tempt + "bishop.png").scaledToHeight(80));
-        else if(type[1] == "q")
+        else if(chess_type[1] == "q")
             pic->setPixmap(QPixmap(tempt + "queen.png").scaledToHeight(80));
-        else if(type[1] == "k")
+        else if(chess_type[1] == "k")
             pic->setPixmap(QPixmap(tempt + "king.png").scaledToHeight(80));
     }
-    else if(type[0] == "b") {
+    else if(chess_type[0] == "b") {
         tempt = ":/pic/black/";
-        if(type[1] == "r")
+        if(chess_type[1] == "r")
             pic->setPixmap(QPixmap(tempt + "rok.png").scaledToHeight(80));
-        else if(type[1] == "n")
+        else if(chess_type[1] == "n")
             pic->setPixmap(QPixmap(tempt + "knight.png").scaledToHeight(80));
-        else if(type[1] == "p")
+        else if(chess_type[1] == "p")
             pic->setPixmap(QPixmap(tempt + "pawn.png").scaledToHeight(80));
-        else if(type[1] == "b")
+        else if(chess_type[1] == "b")
             pic->setPixmap(QPixmap(tempt + "bishop.png").scaledToHeight(80));
-        else if(type[1] == "q")
+        else if(chess_type[1] == "q")
             pic->setPixmap(QPixmap(tempt + "queen.png").scaledToHeight(80));
-        else if(type[1] == "k")
+        else if(chess_type[1] == "k")
             pic->setPixmap(QPixmap(tempt + "king.png").scaledToHeight(80));
     }
     pic->setPos(rect->rect().width() / 2 - pic->boundingRect().width() / 2, rect->rect().height() / 2 - pic->boundingRect().height() / 2);
@@ -67,5 +68,12 @@ void Tile::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
 }
 
 void Tile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    emit clicked();
+    emit clicked(pos);
+}
+
+void Tile::setLoc(QPoint ipt) {
+    pos = ipt;
+}
+QString Tile::getType() {
+    return type;
 }
