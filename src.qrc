@@ -1,10 +1,20 @@
 <RCC>
-    <qresource prefix="/img">
-        <file>src/imageSet/1.png</file>
+    <qresource prefix="/">
         <file>src/imageSet/2.png</file>
-        <file>src/imageSet/3.png</file>
         <file>src/imageSet/4.png</file>
         <file>src/imageSet/5.png</file>
         <file>src/imageSet/6.png</file>
+        <file>pic/white/bishop.png</file>
+        <file>pic/white/king.png</file>
+        <file>pic/white/knight.png</file>
+        <file>pic/white/pawn.png</file>
+        <file>pic/white/queen.png</file>
+        <file>pic/white/rok.png</file>
+        <file>pic/black/bishop.png</file>
+        <file>pic/black/king.png</file>
+        <file>pic/black/knight.png</file>
+        <file>pic/black/pawn.png</file>
+        <file>pic/black/queen.png</file>
+        <file>pic/black/rok.png</file>
     </qresource>
 </RCC>

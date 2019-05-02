@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+    tile.cpp \
+    chess.cpp
 
 HEADERS += \
-        mainwindow.h
+    chess.h \
+    tile.h
 
 FORMS += \
         mainwindow.ui
