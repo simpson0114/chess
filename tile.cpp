@@ -68,12 +68,29 @@ void Tile::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
 }
 
 void Tile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    rect->setBrush(Qt::blue);
     emit clicked(pos);
 }
 
 void Tile::setLoc(QPoint ipt) {
     pos = ipt;
 }
+
 QString Tile::getType() {
     return type;
+}
+
+void Tile::setPressColor(bool ifPress) {
+    if(ifPress == 1)
+        rect->setBrush(Qt::gray);
+    else
+        rect->setBrush(color);
+}
+
+void Tile::hidePic() {
+    pic->hide();
+}
+
+void Tile::showPic() {
+    pic->show();
 }

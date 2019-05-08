@@ -25,6 +25,9 @@ private:
     QGraphicsScene *scene;
     static const int N = 8;
     Tile *tile[N][N];
+    QPoint lastpos;
+    QList <QPoint> Valid;
+    const QPoint NONE = QPoint(-1, -1);
 };
 
 
