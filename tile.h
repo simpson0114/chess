@@ -20,7 +20,7 @@ public:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void setPressColor(bool ifPress);
+    void setPressColor(bool press);
     void hidePic();
     void showPic();
     QString getType();
@@ -29,6 +29,7 @@ signals:
     void clicked(QPoint ipt);
 
 private:
+    bool ifPress;
     QString type;
     QColor color;
     QPoint pos;
