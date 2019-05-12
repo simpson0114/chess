@@ -980,7 +980,6 @@ void Chess::mousePress(QPoint ipt) {
         }
         Valid.clear();
     }
-    qDebug() << lastpos << ipt;
 }
 
 void Chess::BlackWin() {
