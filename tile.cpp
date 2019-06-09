@@ -92,8 +92,6 @@ void Tile::setPressColor(bool press) {
         rect->setBrush(color);
 }
 
-
-
 void Tile::hidePic() {
     pic->hide();
 }

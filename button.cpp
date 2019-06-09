@@ -23,7 +23,6 @@ Button::Button(QString name, int width, int height, int size) {
     double yPos = height / 2 - text->boundingRect().height() / 2;
     text->setPos(xPos, yPos);
 
-
     addToGroup(rect);
     addToGroup(text);
 
